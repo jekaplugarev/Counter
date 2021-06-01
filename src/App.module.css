@@ -3,7 +3,14 @@ body {
 
 }
 
-.container {
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.containerCounter {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -12,8 +19,17 @@ body {
     height: 400px;
     border: 5px solid #61dafb;
     border-radius: 20px;
-    margin: 0 auto;
-    margin-top: 200px;
+}
+
+.containerSettings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    height: 400px;
+    border: 5px solid #61dafb;
+    border-radius: 20px;
 }
 
 .wrapperCount {
@@ -23,12 +39,12 @@ body {
     border-radius: 20px;
     background-color: #61dafb;
     text-align: center;
-
 }
 
 .count {
     font-size: 100px;
 }
+
 .countStop {
     font-size: 100px;
     color: red;
@@ -43,23 +59,89 @@ body {
     height: 25%;
 }
 
+.wrapperSetBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 25%;
+}
+
 .btn {
     width: 45%;
     height: 100%;
     border-radius: 20px;
     font-size: 40px;
     background-color: #61dafb;
-
     border: 2px solid #61dafb;
     cursor: pointer;
     text-transform: uppercase;
 }
+
 .btn:hover {
     border: 2px solid black;
 }
+
 .btn:disabled:hover {
     border: 2px solid #61dafb;
 }
+
 .btn:active {
     font-size: 35px;
+}
+
+.setBtn {
+    width: 45%;
+    height: 100%;
+    border-radius: 20px;
+    font-size: 40px;
+    background-color: #61dafb;
+    border: 2px solid #61dafb;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.setBtn:hover {
+    border: 2px solid black;
+}
+
+.setBtn:disabled:hover {
+    border: 2px solid #61dafb;
+}
+
+.setBtn:active {
+    font-size: 35px;
+}
+
+.wrapperSettings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    height: 40%;
+    border: 2px solid #61dafb;
+    border-radius: 20px;
+    background-color: #61dafb;
+}
+
+.inputSet {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+
+.value {
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.input {
+    align-self: center;
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+    font-size: 30px;
+    line-height: 0;
+    height: 70%;
+    width: 40%;
 }

@@ -3,6 +3,8 @@ import './App.css';
 import style from './App.module.css'
 import {Counter} from './Counter';
 import {Btn} from './Btn';
+import {Settings} from './Settings';
+import {SetBtn} from './SetBtn';
 
 export function App() {
     const maxValue: number = 5
@@ -14,22 +16,28 @@ export function App() {
         }
     }
 
-    function resetCounter () {
+    function resetCounter() {
         setCounter(0)
     }
 
     return (
-        <div className={style.container}>
-            <Counter
-                counter={counter}
-                maxValue={maxValue}
-            />
-            <Btn
-                changeCounter={changeCounter}
-                resetCounter={resetCounter}
-                counter={counter}
-                maxValue={maxValue}
-            />
+        <div className={style.wrapper}>
+            <div className={style.containerSettings}>
+                <Settings/>
+                <SetBtn/>
+            </div>
+            <div className={style.containerCounter}>
+                <Counter
+                    counter={counter}
+                    maxValue={maxValue}
+                />
+                <Btn
+                    changeCounter={changeCounter}
+                    resetCounter={resetCounter}
+                    counter={counter}
+                    maxValue={maxValue}
+                />
+            </div>
         </div>
     )
 }
