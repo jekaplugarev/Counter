@@ -1,4 +1,4 @@
-import style from './App.module.css';
+import style from '../App.module.css';
 import React from 'react';
 
 export type CounterType = {
@@ -6,10 +6,10 @@ export type CounterType = {
     maxValue: number
 }
 
-export function Counter(props: CounterType) {
+export function CounterDisplay(props: CounterType) {
 
     return (
-        <div className={style.wrapperCount}>
+        <div className={style.wrapperCounter}>
             <span className={props.counter === props.maxValue ? style.countStop : style.count}>
                 {props.counter}
             </span>
