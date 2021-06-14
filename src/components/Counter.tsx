@@ -1,33 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {CounterDisplay} from './CounterDisplay';
 import {ControlBtn} from './ControlBtn';
 import style from '../App.module.css';
 
-export function Counter() {
-    const maxValue: number = 5
-    const [counter, setCounter] = useState<number>(0)
+type CounterType = {
+    maxValue: number
+    startValue: number
+    changeCounter: (counter: number) => void
+    resetCounter: () => void
+    count: number
+}
 
-    function changeCounter(counter: number) {
-        if (counter < maxValue) {
-            setCounter(++counter)
-        }
-    }
-
-    function resetCounter() {
-        setCounter(0)
-    }
+export function Counter(props: CounterType) {
 
     return (
         <div className={style.containerCounter}>
             <CounterDisplay
-                counter={counter}
-                maxValue={maxValue}
+                count={props.count}
+                maxValue={props.maxValue}
             />
             <ControlBtn
-                changeCounter={changeCounter}
-                resetCounter={resetCounter}
-                counter={counter}
-                maxValue={maxValue}
+                changeCounter={props.changeCounter}
+                resetCounter={props.resetCounter}
+                count={props.count}
+                maxValue={props.maxValue}
+                startValue={props.startValue}
             />
         </div>
     )

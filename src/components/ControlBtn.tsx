@@ -5,12 +5,13 @@ import {NavLink} from 'react-router-dom';
 export type ControlBtnType = {
     changeCounter: (counter: number) => void
     resetCounter: () => void
-    counter: number
+    count: number
     maxValue: number
+    startValue: number
 }
 
 export function ControlBtn(props: ControlBtnType) {
-    const changeCounter = () => props.changeCounter(props.counter)
+    const changeCounter = () => props.changeCounter(props.count)
     const resetCounter = () => props.resetCounter()
 
     return (
@@ -18,12 +19,12 @@ export function ControlBtn(props: ControlBtnType) {
             <button
                 className={style.btn}
                 onClick={changeCounter}
-                disabled={props.counter === props.maxValue}>Inc
+                disabled={props.count === props.maxValue}>Inc
             </button>
             <button
                 className={style.btn}
                 onClick={resetCounter}
-                disabled={props.counter === 0}>Reset
+                disabled={props.count === props.startValue}>Reset
             </button>
             <button className={style.btn}>
                 <NavLink to="/set" className={style.link}>
