@@ -4,15 +4,17 @@ import {NavLink} from 'react-router-dom';
 
 export type ControlBtnType = {
     changeCounter: (counter: number) => void
-    resetCounter: () => void
+    setCounterValue: () => void
     count: number
     maxValue: number
     startValue: number
 }
 
-export function ControlBtn(props: ControlBtnType) {
+// button в одну компоненту
+
+export function ControlBtns(props: ControlBtnType) {
     const changeCounter = () => props.changeCounter(props.count)
-    const resetCounter = () => props.resetCounter()
+    const resetCounter = () => props.setCounterValue()
 
     return (
         <div className={style.wrapperBtn}>

@@ -9,6 +9,7 @@ type CounterSettingType = {
     startValue: number
     changeMaxValue: (value: number) => void
     changeStartValue: (value: number) => void
+    setCounterValue: () => void
 }
 
 export function CounterSetting(props: CounterSettingType) {
@@ -21,7 +22,11 @@ export function CounterSetting(props: CounterSettingType) {
                 changeMaxValue={props.changeMaxValue}
                 changeStartValue={props.changeStartValue}
             />
-            <SetBtn/>
+            <SetBtn
+                setCounterValue={props.setCounterValue}
+                startValue={props.startValue}
+                maxValue={props.maxValue}
+            />
         </div>
     )
 }

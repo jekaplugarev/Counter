@@ -1,5 +1,5 @@
 import style from '../App.module.css';
-import React, { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 
 export type SettingsType = {
     maxValue: number
@@ -8,13 +8,27 @@ export type SettingsType = {
     changeStartValue: (value: number) => void
 }
 
+
+// показать ошибку при отрицательных числах
+
+
 export function Settings(props: SettingsType) {
     const onChangeMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
-        props.changeMaxValue(+event.currentTarget.value) /// возвращало строку, надо число
-    }
+        let valueAsNumber = event.currentTarget.valueAsNumber;
 
+        if (valueAsNumber > 0) { /// возвращало строку, надо число
+            props.changeMaxValue(valueAsNumber)
+        } else {
+            return
+        }
+    }
+// Поправить рефактор
     const onChangeStartValue = (event: ChangeEvent<HTMLInputElement>) => {
-        props.changeStartValue(+event.currentTarget.value) /// возвращало строку, надо число
+        if (+event.currentTarget.value >= 0) {
+            props.changeStartValue(+event.currentTarget.value)
+        } else {
+            return
+        }
     }
 
     return (
@@ -25,7 +39,7 @@ export function Settings(props: SettingsType) {
                 </div>
                 <input
                     type="number"
-                    className={style.inputSet}
+                    className={props.maxValue > props.startValue ? style.inputSet : style.errorInput}
                     value={props.maxValue}
                     onChange={onChangeMaxValue}
                 />
@@ -36,7 +50,7 @@ export function Settings(props: SettingsType) {
                 </div>
                 <input
                     type="number"
-                    className={style.inputSet}
+                    className={props.maxValue > props.startValue ? style.inputSet : style.errorInput}
                     value={props.startValue}
                     onChange={onChangeStartValue}
                 />

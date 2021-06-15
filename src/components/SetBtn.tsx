@@ -1,27 +1,27 @@
 import style from '../App.module.css';
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 export type SetBtnType = {
-    changeStartValue: (value: number) => void
-
+    setCounterValue: () => void
+    startValue: number
+    maxValue: number
 }
 
-export function SetBtn() {
-    const onClickSetStartValue = (event: ChangeEvent<HTMLInputElement>) => {
-        props.changeStartValue(+event.currentTarget.value)
-    }
+export function SetBtn(props: SetBtnType) {
+    const resetCounter = () => props.setCounterValue()
 
     return (
         <div className={style.wrapperSetBtn}>
-            <button
-                className={style.btn}
-                onClick={onClickSetStartValue}
-            >
-                <NavLink to="/main" className={style.link}>
+            <NavLink to="/main" className={style.link}>
+                <button
+                    className={style.btn}
+                    onClick={resetCounter}
+                    disabled={props.maxValue <= props.startValue}
+                >
                     Set
-                </NavLink>
-            </button>
+                </button>
+            </NavLink>
         </div>
     )
 }
