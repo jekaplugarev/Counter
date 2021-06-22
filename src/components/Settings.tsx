@@ -8,26 +8,17 @@ export type SettingsType = {
     changeStartValue: (value: number) => void
 }
 
-
-// показать ошибку при отрицательных числах
-
-
 export function Settings(props: SettingsType) {
     const onChangeMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
         let valueAsNumber = event.currentTarget.valueAsNumber;
-
-        if (valueAsNumber > 0) { /// возвращало строку, надо число
+        if (valueAsNumber > 0) {
             props.changeMaxValue(valueAsNumber)
-        } else {
-            return
         }
     }
-// Поправить рефактор
     const onChangeStartValue = (event: ChangeEvent<HTMLInputElement>) => {
-        if (+event.currentTarget.value >= 0) {
-            props.changeStartValue(+event.currentTarget.value)
-        } else {
-            return
+        let valueAsNumber = event.currentTarget.valueAsNumber;
+        if (valueAsNumber >= 0) {
+            props.changeStartValue(valueAsNumber)
         }
     }
 

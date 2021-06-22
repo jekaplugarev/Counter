@@ -1,38 +1,38 @@
 import style from '../App.module.css';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Button} from './Button';
 
 export type ControlBtnType = {
     changeCounter: (counter: number) => void
     setCounterValue: () => void
+    switchCounterDisplay: (value: boolean) => void
     count: number
     maxValue: number
     startValue: number
 }
 
-// button в одну компоненту
-
 export function ControlBtns(props: ControlBtnType) {
     const changeCounter = () => props.changeCounter(props.count)
     const resetCounter = () => props.setCounterValue()
+    const switchCounterDisplay = () => props.switchCounterDisplay(true)
 
     return (
         <div className={style.wrapperBtn}>
-            <button
-                className={style.btn}
+            <Button
                 onClick={changeCounter}
-                disabled={props.count === props.maxValue}>Inc
-            </button>
-            <button
-                className={style.btn}
+                disabled={props.count === props.maxValue}
+                btnName={'Inc'}
+            />
+            <Button
                 onClick={resetCounter}
-                disabled={props.count === props.startValue}>Reset
-            </button>
-            <button className={style.btn}>
-                <NavLink to="/set" className={style.link}>
-                    Set
-                </NavLink>
-            </button>
+                disabled={props.count === props.startValue}
+                btnName={'Reset'}
+            />
+            <Button
+                onClick={switchCounterDisplay}
+                btnName={'Set'}
+            />
         </div>
     )
 }
+

@@ -9,6 +9,7 @@ type CounterType = {
     changeCounter: (counter: number) => void
     setCounterValue: () => void
     count: number
+    switchCounterDisplay: (value: boolean) => void
 }
 
 export function Counter(props: CounterType) {
@@ -25,6 +26,7 @@ export function Counter(props: CounterType) {
                 count={props.count}
                 maxValue={props.maxValue}
                 startValue={props.startValue}
+                switchCounterDisplay={props.switchCounterDisplay}
             />
         </div>
     )
