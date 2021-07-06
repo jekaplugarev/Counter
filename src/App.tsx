@@ -1,23 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import style from './App.module.css'
 import {Counter} from './components/Counter';
 import {CounterSetting} from './components/CounterSetting';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from './bll/store';
-import {changeCounter, changeMaxValue, changeStartValue, setCounterValue} from './bll/counter-reducer';
-
+import {AppStateType, store} from './bll/store';
+import {
+    changeCounter,
+    changeMaxValue,
+    changeStartValue,
+    CounterReducerType,
+    setCounterValue, switchCounter
+} from './bll/counter-reducer';
+import {Dispatch} from 'redux';
 
 export function App() {
     // const [maxValue, setMaxValue] = useState(1)
     // const [startValue, setStartValue] = useState(0)
     // const [currentValue, setCurrentValue] = useState(startValue)
-    const [switchCounter, setSwitchCounter] = useState(false)
+    // const [switchCounter, setSwitchCounter] = useState(false)
+    const {
+        maxValue,
+        startValue,
+        currentValue
+    } = useSelector((state: AppStateType) => state.counter)
 
-    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
-    const currentValue = useSelector<AppStateType, number>(state => state.counter.currentValue)
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<Dispatch<CounterReducerType>>()
 
     const changeCounterHandler = () => {
         dispatch(changeCounter())
@@ -31,8 +38,8 @@ export function App() {
     const changeStartValueHandler = (value: number) => {
         dispatch(changeStartValue(value))
     }
-    const switchCounterDisplay = (value: boolean) => {
-        setSwitchCounter(value)
+    const switchCounterDisplay = (isSwitch: boolean) => {
+        dispatch(switchCounter(isSwitch))
     }
     // useEffect(() => {
     //     const counterAsString = localStorage.getItem('counter')
@@ -53,26 +60,11 @@ export function App() {
     //     }
     //     localStorage.setItem('counter', JSON.stringify(counter))
     // }, [startValue, maxValue, currentValue])
-
-
-    // function changeCounter(counter: number) {
-    //     if (counter < maxValue) {
-    //         setCurrentValue(++counter)
-    //     }
-    // }
-    // function setCounterValue() {
-    //     setCurrentValue(startValue)
-    // }
-    // function changeMaxValue(value: number) {
-    //     setMaxValue(value)
-    // }
-    // function changeStartValue(value: number) {
-    //     setStartValue(value)
-    // }
+    const switchDisplay = store.getState().counter.isSwitch
 
     return (
         <div className={style.wrapperApp}>
-            {!switchCounter && <Counter
+            {!switchDisplay && <Counter
                 setCounterValue={setCounterValueHandler}
                 startValue={startValue}
                 maxValue={maxValue}
@@ -80,7 +72,7 @@ export function App() {
                 count={currentValue}
                 switchCounterDisplay={switchCounterDisplay}
             />}
-            {switchCounter &&
+            {switchDisplay &&
             <CounterSetting
                 maxValue={maxValue}
                 startValue={startValue}
